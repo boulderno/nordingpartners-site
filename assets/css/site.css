@@ -254,7 +254,10 @@ p, ul { margin: 0; }
   object-fit: cover;
   object-position: right top;
 }
+[hidden] { display: none !important; }
+
 .person__initials {
+  display: none; /* kept in the markup; remove this line to show the initials again */
   position: absolute;
   left: 16px;
   bottom: 12px;
