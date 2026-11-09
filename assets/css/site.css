@@ -330,6 +330,48 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 16px); }
   color: var(--ink-muted);
 }
 
+/* AI-first page (/ai-first/): two competencies with item lists, steps and principles */
+.section-head__sub { margin-top: 8px; }
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px 64px;
+  align-items: start;
+}
+.competency[id], .band[id] { scroll-margin-top: calc(var(--topbar-h) + 16px); }
+.item-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.item-list .eyebrow { margin-bottom: -2px; }
+.item {
+  border-top: 1px solid var(--rule);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.items-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px 32px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px 32px;
+}
+.step { display: flex; flex-direction: column; gap: 8px; }
+.who {
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* Team */
 .team {
   background: var(--surface-alt);
