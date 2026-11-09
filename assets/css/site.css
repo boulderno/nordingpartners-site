@@ -238,10 +238,23 @@ p, ul { margin: 0; }
 .team .container { display: flex; flex-direction: column; gap: 48px; }
 .team__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 56px 48px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 56px 32px;
 }
 .person { display: flex; flex-direction: column; gap: 12px; }
+.person .heading { font-size: 23px; }
+.person__role {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.person__partner { display: inline-flex; align-items: center; }
+.person__partner img {
+  height: 16px;
+  width: auto;
+  position: relative;
+  top: -1px;
+}
 .person__photo {
   position: relative;
   aspect-ratio: 8 / 5;
@@ -267,7 +280,7 @@ p, ul { margin: 0; }
   color: var(--ink-faint);
 }
 .person h3 { margin-top: 12px; }
-.person__contact { margin-top: 4px; font-size: 14px; line-height: 1.7; }
+.person__contact { margin-top: auto; padding-top: 4px; font-size: 14px; line-height: 1.7; }
 
 /* Careers & contact */
 .careers { padding-top: var(--section-wide); }
