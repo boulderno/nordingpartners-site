@@ -204,7 +204,9 @@ p, ul { margin: 0; }
 }
 .scroll-hint {
   display: none;
-  color: var(--stone);
+  position: relative;
+  top: 15%; /* sits a little below the centre of the space */
+  color: var(--rule); /* same as the divider above What we do */
   transition: opacity 400ms ease;
 }
 @container (min-height: 140px) {
