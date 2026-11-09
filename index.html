@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://www.nordingpartners.no/">
   <meta property="og:image" content="https://www.nordingpartners.no/assets/img/hero-fjord.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="assets/css/site.css?v=20261109g">
+  <link rel="stylesheet" href="assets/css/site.css?v=20261109h">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -280,7 +280,7 @@
     var footer = document.querySelector('.footer');
     var hint = document.querySelector('.scroll-hint');
     var topbar = document.querySelector('.topbar');
-    var heroNav = document.querySelector('.hero__nav');
+    var hero = document.querySelector('.hero');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var current = null, swapping = false, ticking = false;
 
@@ -321,8 +321,8 @@
       setLabel(footerIn ? null : next);
       // the chevron has done its job once the reader starts scrolling
       if (hint) hint.classList.toggle('is-hidden', window.scrollY > 40);
-      // compact header once the hero's own nav has left the viewport
-      topbar.classList.toggle('is-shown', heroNav.getBoundingClientRect().bottom < 0);
+      // compact header once the whole hero has left the viewport
+      topbar.classList.toggle('is-shown', hero.getBoundingClientRect().bottom <= 0);
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener('scroll', onScroll, { passive: true });
