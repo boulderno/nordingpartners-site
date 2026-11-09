@@ -37,6 +37,8 @@
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <main class="sections">
+  <div class="fold">
   <header class="hero">
     <img class="hero__image" src="assets/img/hero-fjord.jpg" alt="" width="1920" height="1080" fetchpriority="high">
     <nav class="container hero__nav" aria-label="Main">
@@ -55,20 +57,26 @@
     </div>
   </header>
 
-  <main id="main">
-
-    <section class="intro">
+    <section class="intro" id="main">
       <div class="container">
         <p class="lead measure">N&amp;P is a management consultancy supporting clients in value creation focused AI adoption, building on our expertise in strategy development, operational improvements and transactions.</p>
         <p class="lead measure">We work closely with our clients to create sustained results and bottom-line impact, and we are deeply committed to their long-term success.</p>
         <p class="measure"><a href="mailto:anders.nording@nordingpartners.no">Reach out to explore how we can aid in realizing your ambitions</a></p>
       </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <svg viewBox="0 0 160 24" width="160" height="24"><path d="M2 2 L80 22 L158 2" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
     </section>
+  </div>
 
-    <section class="work" id="work">
+
+    <div class="section-bar" id="work">
+      <a class="container section-bar__label eyebrow" href="#work">What we do</a>
+    </div>
+
+    <section class="work reveal">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">What we do</p>
           <h2 class="title">Three core competencies, on top of cutting edge technology</h2>
         </div>
 
@@ -127,10 +135,13 @@
       </div>
     </section>
 
-    <section class="team" id="team">
+    <div class="section-bar section-bar--alt" id="team">
+      <a class="container section-bar__label eyebrow" href="#team">Team</a>
+    </div>
+
+    <section class="team reveal">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Team</p>
           <h2 class="title">Experienced leadership team, working close-knit with our clients</h2>
         </div>
 
@@ -208,10 +219,13 @@
       </div>
     </section>
 
-    <section class="careers" id="careers">
+    <div class="section-bar" id="careers">
+      <a class="container section-bar__label eyebrow" href="#careers">Careers</a>
+    </div>
+
+    <section class="careers reveal">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Careers</p>
           <h2 class="title">Work with us</h2>
         </div>
         <div class="careers__text">
@@ -221,10 +235,13 @@
       </div>
     </section>
 
-    <section class="contact" id="contact">
+    <div class="section-bar" id="contact">
+      <a class="container section-bar__label eyebrow" href="#contact">Contact</a>
+    </div>
+
+    <section class="contact reveal">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Contact</p>
           <h2 class="title">Trondheim</h2>
         </div>
         <div class="contact__block">
@@ -246,5 +263,39 @@
       <p>Nording &amp; Partners AS · Org. no. 930 067 385 MVA · Registered office: Ferjemannsveien 4, 7042 Trondheim, Norway · © 2026</p>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    var bars = Array.prototype.slice.call(document.querySelectorAll('.section-bar'));
+    var hint = document.querySelector('.scroll-hint');
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var vh = window.innerHeight;
+      bars.forEach(function (bar) {
+        var r = bar.getBoundingClientRect();
+        var pinned = r.bottom >= vh - 1;
+        bar.classList.toggle('is-pinned', pinned);
+        bar.classList.toggle('is-docked', !pinned);
+      });
+      if (hint) hint.classList.toggle('is-hidden', window.scrollY > 40);
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  })();
+  </script>
 </body>
 </html>
