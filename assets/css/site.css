@@ -183,14 +183,34 @@ p, ul { margin: 0; }
   flex-direction: column;
 }
 
-/* Intro */
+/* Intro. The bottom padding is the floor: about three body lines (3 × 16px × 1.6)
+   between "Reach out" and the rule above What we do on compressed viewports */
 .intro {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: var(--section) 0 24px;
+  padding: var(--section) 0 76px;
 }
 .intro .container { display: flex; flex-direction: column; gap: 16px; }
+
+/* Whatever room is left on taller viewports; the chevron shows only when there is enough of it */
+.intro__space {
+  flex: 1 1 0;
+  min-height: 0;
+  container-type: size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-hint {
+  display: none;
+  color: var(--stone);
+  transition: opacity 400ms ease;
+}
+@container (min-height: 140px) {
+  .scroll-hint { display: block; }
+}
+.scroll-hint.is-hidden { opacity: 0; }
 
 /* Sections fade in with scroll (opacity is set by the script; full without it) */
 .reveal { opacity: 1; }
@@ -366,5 +386,5 @@ p, ul { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; }
-  .next-bar, .next-bar__label { transition: none; }
+  .next-bar, .next-bar__label, .scroll-hint { transition: none; }
 }
