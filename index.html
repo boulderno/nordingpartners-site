@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://www.nordingpartners.no/">
   <meta property="og:image" content="https://www.nordingpartners.no/assets/img/hero-fjord.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="assets/css/site.css?v=20261109f">
+  <link rel="stylesheet" href="assets/css/site.css?v=20261109g">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,6 +36,21 @@
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Compact header: slides in once the hero's nav has scrolled out -->
+  <nav class="topbar" aria-label="Sections">
+    <div class="container topbar__inner">
+      <a class="topbar__logo" href="#top" aria-label="Nording &amp; Partners">
+        <img src="assets/img/np-monogram-navy.svg" alt="" width="54" height="22">
+      </a>
+      <div class="topbar__links">
+        <a href="#work">What we do</a>
+        <a href="#team">Team</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
   <main class="sections">
   <div class="fold">
@@ -264,6 +279,8 @@
     var label = bar.querySelector('.next-bar__label');
     var footer = document.querySelector('.footer');
     var hint = document.querySelector('.scroll-hint');
+    var topbar = document.querySelector('.topbar');
+    var heroNav = document.querySelector('.hero__nav');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var current = null, swapping = false, ticking = false;
 
@@ -304,6 +321,8 @@
       setLabel(footerIn ? null : next);
       // the chevron has done its job once the reader starts scrolling
       if (hint) hint.classList.toggle('is-hidden', window.scrollY > 40);
+      // compact header once the hero's own nav has left the viewport
+      topbar.classList.toggle('is-shown', heroNav.getBoundingClientRect().bottom < 0);
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener('scroll', onScroll, { passive: true });
